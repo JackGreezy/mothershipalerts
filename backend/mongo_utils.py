@@ -80,3 +80,12 @@ def clear_shows_collection():
     collection.delete_many({})
 
     print("All documents in the 'shows' collection have been deleted.")
+
+def get_user_emails_from_mongo():
+    client = MongoClient('mongodb://localhost:27017/')  # Replace with your MongoDB connection string
+    db = client['your_database_name']  # Replace with your database name
+    collection = db['users']  # Replace with your users collection
+
+    # Extract all emails from the user documents
+    emails = [user['email'] for user in collection.find()]
+    return emails
