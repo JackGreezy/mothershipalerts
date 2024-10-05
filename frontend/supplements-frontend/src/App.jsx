@@ -1,6 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import './App.css'; // Import the Tailwind styles
 
 function App() {
+  const rotatingList = ["Kill Tony", "Shane Gillis", "Joe Rogan"];
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % rotatingList.length);
+    }, 3000); // Change text every 3 seconds
+
+    return () => clearInterval(intervalId); // Clean up on component unmount
+  }, []);
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
@@ -20,8 +32,7 @@ function App() {
       preferences,
     };
   
-    // Send the data to the backend API (Update the URL to your backend)
-    fetch("http://localhost:5000/api/users", {  // Make sure this matches your backend URL
+    fetch("http://localhost:5000/api/users", {  
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -31,29 +42,25 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
-        // Show a success message, you can display an alert or update the UI here
         alert("User data submitted successfully!");
       })
       .catch((error) => {
         console.error("Error:", error);
-        // Handle error, display an error message to the user
         alert("Error submitting user data. Please try again.");
       });
   };
-  
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
       {/* Header Section */}
       <header className="text-center mb-16">
-        <h1 className="text-5xl font-extrabold text-gray-900 font-poppins mb-4 leading-loose">
-          Book your favorite{" "}
-          <span className="text-blue-500 animate-pulse">comic ticket</span>{" "}
-          fast! 🚀
+        <h1 className="text-6xl font-extrabold text-gray-900 mb-4">
+          Mothership Lander
         </h1>
-        <p className="text-xl text-gray-600 mt-4">
-          Join the journey and get early access to exclusive releases!
-        </p>
+        <p className="text-2xl text-gray-700 mt-4">
+  Sick of missing out on seeing{" "}
+  <span className="text-blue-500 font-bold rotating-text">{rotatingList[currentIndex]}</span>?
+</p>
       </header>
 
       {/* Form Section */}
