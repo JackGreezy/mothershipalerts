@@ -15,8 +15,7 @@ def show_to_dict(show):
 # Initialize MongoDB connection
 def connect_to_mongo():
     # Replace the following with your own connection string
-    client = MongoClient("mongodb+srv://jackagreenberg:A7m0rKlYHO4lkdcl@supplements.z7ma0.mongodb.net/?retryWrites=true&w=majority&appName=Supplementsg")  # For MongoDB Atlas
-    return client
+    client = MongoClient(f"mongodb+srv://{mongo_username}:{mongo_password}@supplements.z7ma0.mongodb.net/?retryWrites=true&w=majority&appName=Supplementsg")    return client
 
 # Save the list of shows to MongoDB
 def save_shows_to_mongo(shows):
