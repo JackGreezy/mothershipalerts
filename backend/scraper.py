@@ -1,14 +1,11 @@
 import time
 from datetime import datetime
 import random
-import threading
-from search import fetch_url, newShowCheck, remove_old_shows, updateMonthYear
-
-
+from search import fetch_url, newShowCheck, updateMonthYear
+from mongo_utils import remove_old_shows
 
 url = 'https://comedymothership.com/shows'
-thisMonth = 0 
-
+thisMonth = 10 
 
 def constantly_ping_and_cleanup():
     while True:
@@ -27,10 +24,6 @@ def constantly_ping_and_cleanup():
                 print("It is a new month, updating Month/Year map!")
                 updateMonthYear(thisMonth)
         thisMonth = now.month
-    
-
-                
-
         # Collect HTML from the URL
         response = fetch_url(url)
 

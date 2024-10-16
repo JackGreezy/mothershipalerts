@@ -5,7 +5,8 @@ import time
 from bs4 import BeautifulSoup
 from datetime import datetime
 from show import Show, Shows 
-from mongo_utils import get_show_urls_from_mongo, save_shows_to_mongo, get_user_emails_from_mongo, notify_subscribers
+from mongo_utils import get_show_urls_from_mongo, save_shows_to_mongo, get_user_emails_from_mongo
+from email_handler import notify_subscribers
 
 month_year_map = {
     1: 2025, 2: 2025, 3: 2025, 4: 2025, 5: 2025, 6: 2025,
@@ -78,18 +79,16 @@ def newShowCheck(response):
     #save list of shows to mongoDB
     if shows.get_all_shows():  # Check if the list of shows is not empty
         save_shows_to_mongo(shows.get_all_shows())  # Pass the list of shows to MongoDB
+        print("New Shows added!")
 
         # Notify users via email about the new shows
         new_shows = shows.get_all_shows()
         subscribers = get_user_emails_from_mongo()  # Get emails of all subscribers
         
         for show in new_shows:
-            show_details = f"Title: {show.title}\nDate: {show.formatted_date}\nRoom: {show.room}\nDescription: {show.description}\nLink: {show.url}"
-            
             # Notify all subscribers with the show details
-            notify_subscribers(subscribers, show_details)
+            notify_subscribers(subscribers, show)
 
-        print("New Shows added!")
     else:
         print("No New Shows found!")
 
@@ -117,7 +116,6 @@ def combine_date_time(date_str, time_str):
 def updateMonthYear(thisMonth):
     month_year_map[thisMonth] += 1 
     print("Here is updated Month/Year map: "+ month_year_map)
-
 
 
 
