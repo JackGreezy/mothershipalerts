@@ -117,16 +117,16 @@ You can deploy this app on DigitalOcean as follows:
 
 Configure NGINX:
 
-    Set up Nginx to serve your frontend (from the dist folder after building) and proxy API requests to Flask.
+Set up Nginx to serve your frontend (from the dist folder after building) and proxy API requests to Flask.
 
 Secure the site:
 
-    Install and configure an SSL certificate using Let’s Encrypt for HTTPS support:
+Install and configure an SSL certificate using Let’s Encrypt for HTTPS support:
 
-    ```bash
-    sudo apt-get install certbot python3-certbot-nginx
-    sudo certbot --nginx -d yourdomain.com
-    ```
+```bash
+ sudo apt-get install certbot python3-certbot-nginx
+ sudo certbot --nginx -d yourdomain.com
+```
 
 7. Run your app using Flask in production mode or with a WSGI server like Gunicorn.
    - Example using Gunicorn:
