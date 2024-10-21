@@ -29,7 +29,8 @@
 
 ## App Preview:
 
-![App Preview](https://your-screenshot-link.jpg)
+![App Preview](./assets/mothershipalerts.com-homepage.jpg)
+![Email Preview](./assets/email-example.jpg)
 
 ---
 
@@ -100,17 +101,19 @@ You can deploy this app on DigitalOcean as follows:
 
    - Install Python dependencies:
 
-   ````bash
+   ```bash
    cd backend
    pip install -r requirements.txt
+   ```
 
    - Set up MongoDB and ensure the credentials are correctly stored in your .env file:
+
    ```bash
    MONGO_USERNAME=<your_mongo_username>
    MONGO_PASSWORD=<your_mongo_password>
    MONGO_CLUSTER_URL=<your_cluster_url>
    MONGO_DB_NAME=<your_db_name>
-   ````
+   ```
 
 Configure NGINX:
 
@@ -122,6 +125,7 @@ Secure the site:
     ```bash
     sudo apt-get install certbot python3-certbot-nginx
     sudo certbot --nginx -d yourdomain.com
+    ```
 
 7. Run your app using Flask in production mode or with a WSGI server like Gunicorn.
    - Example using Gunicorn:
