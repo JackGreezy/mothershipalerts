@@ -15,6 +15,7 @@ app = Flask(__name__)
 # Enable CORS for all routes and any origin
 CORS(app, resources={r"/*": {"origins": "*"}})
 
+
 # MongoDB connection and routes...
 
 # Connect to MongoDB
@@ -92,5 +93,5 @@ def unsubscribe():
 
 
 # Necessary for local development, not production
-# if __name__ == '__main__':
-#     app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)

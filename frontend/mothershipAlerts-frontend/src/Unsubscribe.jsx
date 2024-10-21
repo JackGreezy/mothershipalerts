@@ -9,7 +9,7 @@ function Unsubscribe() {
     
         try {
             // Send the unsubscribe request
-            await fetch('"https://mothershipalerts.com/api/unsubscribe', {
+            await fetch('https://mothershipalerts.com/api/unsubscribe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
