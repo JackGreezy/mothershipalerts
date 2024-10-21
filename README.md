@@ -122,6 +122,7 @@ Configure NGINX:
 Secure the site:
 
     Install and configure an SSL certificate using Let’s Encrypt for HTTPS support:
+
     ```bash
     sudo apt-get install certbot python3-certbot-nginx
     sudo certbot --nginx -d yourdomain.com
