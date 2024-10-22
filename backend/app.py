@@ -11,10 +11,11 @@ MONGO_PASSWORD = os.getenv("MONGO_PASSWORD")
 MONGO_CLUSTER_URL = os.getenv("MONGO_CLUSTER_URL")
 MONGO_DB_NAME = os.getenv("MONGO_DB_NAME")
 
+#print(MONGO_USERNAME, MONGO_PASSWORD, MONGO_CLUSTER_URL, MONGO_DB_NAME)
+
 app = Flask(__name__)
 # Enable CORS for all routes and any origin
-CORS(app, resources={r"/*": {"origins": "*"}})
-
+CORS(app, resources={r"/*": {"origins": "https://mothershipalerts.com"}})
 
 # MongoDB connection and routes...
 
@@ -67,7 +68,6 @@ def add_user():
     except Exception as e:
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
 
-
 # API route to handle unsubscribe requests
 @app.route('/api/unsubscribe', methods=['POST'])
 def unsubscribe():
@@ -94,4 +94,4 @@ def unsubscribe():
 
 # Necessary for local development, not production
 if __name__ == '__main__':
-    app.run(debug=True)
+        app.run(host='0.0.0.0')

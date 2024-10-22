@@ -6,10 +6,10 @@ function Unsubscribe() {
 
     const handleUnsubscribe = async (e) => {
         e.preventDefault();
-    
+
         try {
             // Send the unsubscribe request
-            await fetch('https://mothershipalerts.com/api/unsubscribe', {
+            await fetch("https://mothershipalerts.com/api/unsubscribe", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ function Unsubscribe() {
             setMessage('If the email exists, you will be unsubscribed.');
         }
     };
-    
+
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
             <h1 className="text-3xl font-semibold text-gray-800 mb-6">Unsubscribe from Emails</h1>
