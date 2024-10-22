@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure
-from datetime import datetime
+from datetime import datetime, timezone
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -83,10 +83,10 @@ def remove_old_shows():
     db = client["comedy_shows_db"]  # Replace with your database name
     collection = db["shows"]  # Replace with your collection name
     
-    current_time = datetime.now()
+    current_time = datetime.now(timezone.utc)  # Ensure timezone awareness
     
-    # Query: find and delete documents where 'date_time' is older than 'current_time'
-    result = collection.delete_many({"date_time": {"$lt": current_time}})
+    # Query: find and delete documents where 'formatted_date' is older than 'current_time'
+    result = collection.delete_many({"formatted_date": {"$lt": current_time}})
     
     print(f"Removed {result.deleted_count} old shows from MongoDB")
 
