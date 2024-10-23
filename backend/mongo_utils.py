@@ -26,6 +26,7 @@ def connect_to_mongo():
     try:
     # Replace the following with your own connection string
         connection_string = f"mongodb+srv://{MONGO_USERNAME}:{MONGO_PASSWORD}@{MONGO_CLUSTER_URL}/?retryWrites=true&w=majority&appName={MONGO_DB_NAME}"
+        print(connection_string)
         client = MongoClient(connection_string, ssl=True)
         print(client.list_database_names())  # This will raise an error if the connection fails
         return client
